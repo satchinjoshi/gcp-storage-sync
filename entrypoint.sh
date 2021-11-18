@@ -17,5 +17,5 @@ gcloud auth activate-service-account --key-file json_file.json
 
 sh -c "gsutil -m rsync $* -r ${SOURCE_DIR} gs://${GCP_STORAGE_BUCKET}/${DEST_DIR}"
 
-gcloud auth revoke --all
+gcloud auth revoke --all || true ## true coz "Service account tokens cannot be revoked, but they will expire automatically. To prevent use of the service account token earlier than the expiration, delete or disable the parent service account."
 shred -zvu -n 5 json_file.json
